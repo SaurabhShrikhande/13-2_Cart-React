@@ -1,6 +1,7 @@
 import './App.css';
 import Productmap from './productmap';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
    let [updatedarr , setarr] = useState([]);
@@ -9,7 +10,7 @@ function App() {
 
    function tot(){
     let tot = 0;
-      tot =  updatedarr.map((item) => {
+      updatedarr.map((item) => {
       tot = tot + parseInt(item.price) * parseInt(item.initval);
        settotal(tot);
         return 0;
@@ -24,14 +25,17 @@ function App() {
    }
 
 
-
+useEffect(()=>{
+  tot();
+},[updatedarr])
 
    function cartfun (uparr){
-    console.log(uparr)  
+    console.log(uparr); 
     // setarr(uparr);
-     setarr(() =>  updatedarr = uparr);
-     tot();
-   
+    
+     setarr(uparr);
+
+    
    }
 
   return (
@@ -48,6 +52,7 @@ function App() {
              {
               empty && <h3>Cart is Empty</h3>
              }
+
             <div>
               {
                 updatedarr.map((item, idx) => {

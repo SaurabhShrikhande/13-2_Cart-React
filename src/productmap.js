@@ -31,6 +31,7 @@ export default function Productmap(props) {
     })
     //        return item;
     setprodinit(updatedArr);
+    console.log(updatedArr);
     props.cart(updatedArr);
   }
 
